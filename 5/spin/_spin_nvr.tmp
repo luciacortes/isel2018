@@ -1,0 +1,16 @@
+never spec {    /* !((([] ((! (((state==0)) && (button))) || (<> ((state==1))))) && ([] ((! (((state==1)) && (button))) || (<> ((state==1)))))) && ([] ((! (((state==1)) && (1))) || (<> ((state==0)))))) */
+T0_init:
+	do
+	:: (((! ((! (((state==0)) && (button)))) && ! (((state==1)))) || (! ((! (((state==1)) && (button)))) && ! (((state==1)))))) -> goto accept_S9
+	:: (! ((! (((state==1)) && (1)))) && ! (((state==0)))) -> goto accept_S14
+	:: (1) -> goto T0_init
+	od;
+accept_S9:
+	do
+	:: (! (((state==1)))) -> goto accept_S9
+	od;
+accept_S14:
+	do
+	:: (! (((state==0)))) -> goto accept_S14
+	od;
+}

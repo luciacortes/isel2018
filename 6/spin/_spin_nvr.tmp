@@ -1,0 +1,21 @@
+never spec {    /* !(((([] ((! (((state==OFF)) && (button))) || (<> ((state==ON))))) && ([] ((! (((state==ON)) && (button))) || (<> ((state==OFF)))))) && ([] ((! (((state==ON)) && (detector))) || (<> ((state==SONANDO)))))) && ([] ((! (((state==SONANDO)) && (button))) || (<> ((state==ON)))))) */
+T0_init:
+	do
+	:: (! ((! (((state==ON)) && (detector)))) && ! (((state==SONANDO))) && ((! ((! (((state==OFF)) && (button))))) || (((! ((! (((state==ON)) && (button))))) || (((! ((! (((state==ON)) && (detector))))) || (! ((! (((state==SONANDO)) && (button))))))))))) -> goto accept_S7
+	:: (((! ((! (((state==OFF)) && (button)))) && ! (((state==ON)))) || (! ((! (((state==SONANDO)) && (button)))) && ! (((state==ON)))))) -> goto accept_S15
+	:: (! ((! (((state==ON)) && (button)))) && ! (((state==OFF)))) -> goto accept_S20
+	:: (1) -> goto T0_init
+	od;
+accept_S7:
+	do
+	:: (! (((state==SONANDO)))) -> goto accept_S7
+	od;
+accept_S15:
+	do
+	:: (! (((state==ON)))) -> goto accept_S15
+	od;
+accept_S20:
+	do
+	:: (! (((state==OFF)))) -> goto accept_S20
+	od;
+}

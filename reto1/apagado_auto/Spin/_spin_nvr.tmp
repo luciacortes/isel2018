@@ -1,0 +1,16 @@
+never spec {    /* !(([] ((! (((state==OFF)) && (sensor))) || (<> ((state==ON))))) && ([] ((! (((state==ON)) && (1))) || (<> ((state==OFF)))))) */
+T0_init:
+	do
+	:: (! ((! (((state==OFF)) && (sensor)))) && ! (((state==ON)))) -> goto accept_S5
+	:: (! ((! (((state==ON)) && (1)))) && ! (((state==OFF)))) -> goto accept_S10
+	:: (1) -> goto T0_init
+	od;
+accept_S5:
+	do
+	:: (! (((state==ON)))) -> goto accept_S5
+	od;
+accept_S10:
+	do
+	:: (! (((state==OFF)))) -> goto accept_S10
+	od;
+}

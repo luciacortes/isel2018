@@ -1,0 +1,22 @@
+ltl  spec {
+[] (((state == OFF) && button) -> <> (state == PRE_ON_1)) &&
+[] (((state == PRE_ON_1) && button) -> <> (state == PRE_ON_2)) &&
+[] (((state == PRE_ON_2) && button) -> <> (state == PRE_ON_3)) &&
+[] (((state == PRE_ON_3) && button) -> <> (state == ON)) &&
+
+[] (((state == PRE_ON_1) && true) -> <> (state == OFF)) &&
+[] (((state == PRE_ON_2) && true) -> <> (state == OFF)) &&
+[] (((state == PRE_ON_3) && true) -> <> (state == OFF)) &&
+
+[] (((state == ON) && detector) -> <> (state == SONANDO)) &&
+[] (((state == SONANDO) && button) -> <> (state == ON)) &&
+
+[] (((state == ON) && button) -> <> (state == PRE_OFF_1)) &&
+[] (((state == PRE_OFF_1) && button) -> <> (state == PRE_OFF_2)) &&
+[] (((state == PRE_OFF_2) && button) -> <> (state == PRE_OFF_3)) &&
+[] (((state == PRE_OFF_3) && button) -> <> (state == OFF)) &&
+
+[] (((state == PRE_OFF_1) && true) -> <> (state == ON)) &&
+[] (((state == PRE_OFF_2) && true) -> <> (state == ON)) &&
+[] (((state == PRE_OFF_3) && true) -> <> (state == ON))
+}
